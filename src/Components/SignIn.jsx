@@ -18,7 +18,8 @@ export default function SignIn() {
       const variavel = axios
         .post(URL, { email: email, password: senha })
         .then((res) => {
-          sessionStorage.tokenete = res.data;
+          sessionStorage.tokenete = res.data.token;
+          sessionStorage.nome = res.data.name;
           sessionStorage.setItem("user", email);
           Navegar('/home')
           console.log(res.data)

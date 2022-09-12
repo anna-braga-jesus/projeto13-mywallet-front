@@ -179,7 +179,7 @@ const Css = {
 
 
   Valor: styled.span`
-  color: ${props => props.type=="credit" ? "#03AC00": "#C70000"};
+  color: ${props => props.type==="credit" ? "#03AC00": "#C70000"};
   
   `,
   HomeBotton: styled.div`

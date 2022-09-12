@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function Home(props) {
   const URL = "http://127.0.0.1:5000/transactions";
   const [golist, setGolist] = useState("hidden");
+  const [ nome, setNome ] = useState();
   const [saldo, setSaldo] = useState(0);
   const Navegar = useNavigate();
   const token = sessionStorage.tokenete;
@@ -20,6 +21,7 @@ export default function Home(props) {
       .then((res) => {
         setTransacao(res.data);
         setSaldo(0);
+        setNome(sessionStorage.nome);
         setGolist("show");
         res.data.forEach((element) => {
             let variavel = Number(element.value)
@@ -28,6 +30,7 @@ export default function Home(props) {
             setSaldo( saldo => saldo+variavel);
           } else {
             setSaldo(saldo => saldo-variavel);
+
           }
         });
       })
@@ -72,7 +75,7 @@ export default function Home(props) {
     <>
       <Css.Home>
         <Css.HomeTopo>
-          <h2>Olá, Fulano</h2>
+          <h2>Olá, {!nome? "fulano" : nome }</h2>
           <ion-icon name="enter-outline" onClick={LogOut} />
         </Css.HomeTopo>
         <Css.Registros className={golist}>
